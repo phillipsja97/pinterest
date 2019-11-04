@@ -4,6 +4,7 @@ import auth from './components/Auth/Auth';
 import authData from './helpers/data/authData';
 import nav from './components/MyNavBar/myNavBar';
 import machine from './components/machine/machine';
+import pin from './helpers/data/pinsData';
 import 'bootstrap';
 import '../styles/main.scss';
 
@@ -13,6 +14,7 @@ const init = () => {
   authData.checkLoginStatus();
   nav.logoutEvent();
   machine.buildTheMachine();
+  pin.getPins();
 };
 
 init();
