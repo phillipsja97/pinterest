@@ -14,7 +14,7 @@ const init = () => {
   authData.checkLoginStatus();
   nav.logoutEvent();
   machine.buildTheMachine();
-  pin.getPins();
+  pin.getPins('QrT0kIUFSbc27wpoOS7DP1P7cWe2');
 };
 
 init();
