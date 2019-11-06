@@ -1,12 +1,24 @@
+import firebase from 'firebase/app';
+import 'firebase/auth';
+import './boardCard.scss';
+
 const boardCard = (board) => {
-  const domString = `
-  <div class="card d-flex flex-wrap">
-  <div class="individual-card">
+  const getCurrentUid = () => firebase.auth().currentUser.uid;
+  let domString = '';
+  if (getCurrentUid) {
+    domString += `
+  <div class="card col-4">
   <h5 class="card-title text-center">${board.name}</h5>
   <div class="card-body">
-    <p class="card-text text-center">${board.description}</p>
+  <img src=${board.imageUrl} class="card-img-top" alt="...">
+  <p class="card-text text-center">${board.description}</p>
   </div>
   </div>`;
+  } else {
+    domString = `
+  <div class="card col-4">
+  <h5 class="card-title text-center">EMPTY</h5>`;
+  }
   return domString;
 };
 
