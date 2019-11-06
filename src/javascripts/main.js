@@ -5,6 +5,7 @@ import authData from './helpers/data/authData';
 import nav from './components/MyNavBar/myNavBar';
 import machine from './components/machine/machine';
 import pin from './helpers/data/pinsData';
+import board from './components/boards/board';
 import 'bootstrap';
 import '../styles/main.scss';
 
@@ -15,6 +16,7 @@ const init = () => {
   nav.logoutEvent();
   machine.buildTheMachine();
   pin.getPins('QrT0kIUFSbc27wpoOS7DP1P7cWe2');
+  board.makeABoard();
 };
 
 init();
