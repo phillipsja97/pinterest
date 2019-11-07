@@ -7,7 +7,7 @@ const boardCard = (boards) => {
   let domString = '';
   if (getCurrentUid) {
     domString += `
-  <div class="card col-4">
+  <div class="card col-4 singleBoard" id="${boards.id}">
   <h5 class="card-title text-center">${boards.name}</h5>
   <div class="card-body">
   <img src=${boards.imageUrl} class="card-img-top" alt="...">

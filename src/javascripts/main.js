@@ -4,8 +4,6 @@ import auth from './components/Auth/Auth';
 import authData from './helpers/data/authData';
 import nav from './components/MyNavBar/myNavBar';
 // import pin from './helpers/data/pinsData';
-import board from './components/boards/board';
-import pins from './components/pins/pins';
 // import pCard from './components/pinCard/pinCard';
 import 'bootstrap';
 import '../styles/main.scss';
@@ -16,8 +14,6 @@ const init = () => {
   authData.checkLoginStatus();
   nav.logoutEvent();
   // pin.getPinsByBoardId();
-  board.makeABoard();
-  pins.getUserPins();
   // pCard.pinCard();
 };
 
