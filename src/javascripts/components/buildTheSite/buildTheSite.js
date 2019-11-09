@@ -7,6 +7,10 @@ import card from '../boardCard/boardCard';
 import b from '../../helpers/data/boardData';
 import './buildTheSite.scss';
 
+const backToUsersBoards = () => {
+  makeABoard();
+};
+
 const makeABoard = (uid) => {
   b.getBoards(uid)
     .then((boards) => {
@@ -32,7 +36,9 @@ const printUserPins = (event) => new Promise((resolve, reject) => {
         domString += pCard.printPinCards(pin);
       });
       domString += '</div>';
+      domString += '<button class="btn btn-danger" id="goBack">Go back to My Boards</button>';
       utilities.printToDom('board', domString);
+      $('body').on('click', '#goBack', backToUsersBoards);
     })
     .catch((error) => reject(error));
 });
