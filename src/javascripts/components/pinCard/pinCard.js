@@ -8,6 +8,7 @@ const printPinCards = (pin) => {
     <img src=${pin.imageUrl} class="card-img-top pinImg" alt="Image of ${pin.name}">
     <div class="card-body">
       <p>${pin.description}</p>
+    <button class="btn btn-danger deletePinButton" id="${pin.id}">Delete Pin</button>
     </div>
   </div>
   `;

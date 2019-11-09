@@ -13,7 +13,6 @@ const getBoards = () => new Promise((resolve, reject) => {
         boards.push(theBoards[fbId]);
       });
       resolve(boards);
-      console.log(boards);
     })
     .catch((error) => reject(error));
 });

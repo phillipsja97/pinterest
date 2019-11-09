@@ -30,6 +30,7 @@ const printUserPins = (event) => new Promise((resolve, reject) => {
   const boardId = event.target.id;
   pinsData.getPinsByBoardId(boardId)
     .then((pins) => {
+      console.log(pins);
       let domString = '<h2 class="text-center header">My Boards</H2>';
       domString += '<div class="d-flex flex-wrap justify-content-around">';
       pins.forEach((pin) => {
@@ -39,8 +40,19 @@ const printUserPins = (event) => new Promise((resolve, reject) => {
       domString += '<button class="btn btn-danger" id="goBack">Go back to My Boards</button>';
       utilities.printToDom('board', domString);
       $('body').on('click', '#goBack', backToUsersBoards);
+      $('body').on('click', '.deletePinButton', deletePinFromBoard);
     })
     .catch((error) => reject(error));
 });
 
-export default { makeABoard, printUserPins };
+const deletePinFromBoard = (event) => {
+  event.preventDefault();
+  pinsData.deletePin(event.target.id)
+    .then(() => {
+      // eslint-disable-next-line no-use-before-define
+      printUserPins();
+    })
+    .catch((error) => console.error(error));
+};
+
+export default { makeABoard, printUserPins, deletePinFromBoard };
