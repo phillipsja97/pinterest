@@ -1,7 +1,7 @@
 import firebase from 'firebase/app';
 import 'firebase/auth';
 import $ from 'jquery';
-import build from '../../components/buildTheSite/buildTheSite';
+import build from '../../components/printBoards/printBoards';
 
 const authDiv = $('#auth');
 const board = $('#board');
