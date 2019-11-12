@@ -15,8 +15,6 @@ const init = () => {
   authData.checkLoginStatus();
   nav.logoutEvent();
   event.listeners();
-  // pin.getPinsByBoardId();
-  // pCard.pinCard();
 };
 
 init();
