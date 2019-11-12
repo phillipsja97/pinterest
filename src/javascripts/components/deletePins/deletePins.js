@@ -2,7 +2,7 @@ import $ from 'jquery';
 import pinsData from '../../helpers/data/pinsData';
 import pCard from '../printPins/printPins';
 
-const deletePinFromBoard = (event) => {
+const deletePinFromBoardByPinId = (event) => {
   event.preventDefault();
   const pinId = event.target.id;
   const boardId = $(event.target).closest('.pinContainer').attr('id');
@@ -14,4 +14,4 @@ const deletePinFromBoard = (event) => {
     .catch((error) => console.error(error));
 };
 
-export default { deletePinFromBoard };
+export default { deletePinFromBoardByPinId };

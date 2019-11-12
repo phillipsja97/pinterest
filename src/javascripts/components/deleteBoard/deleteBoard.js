@@ -1,7 +1,8 @@
 import boardData from '../../helpers/data/boardData';
 import printB from '../printBoards/printBoards';
 
-const deleteBoard = (event) => {
+
+const deleteBoardByBoardId = (event) => {
   const boardId = event.target.id;
   boardData.deleteBoardfromFirebase(boardId)
     .then(() => {
@@ -11,4 +12,4 @@ const deleteBoard = (event) => {
     .catch((error) => console.error(error));
 };
 
-export default { deleteBoard };
+export default { deleteBoardByBoardId };

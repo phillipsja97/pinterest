@@ -13,8 +13,10 @@ const getUserId = (event) => {
 const printUserPins = (boardId) => new Promise((resolve, reject) => {
   pinsData.getPinsByBoardId(boardId)
     .then((pins) => {
-      console.log(pins);
       let domString = '<h2 class="text-center header">My Boards</H2>';
+      domString += `<button type="button" class="btn btn-primary addPinOnBoard" id="${boardId}"data-toggle="modal" data-target="#exampleModal">
+      Add A Pin
+      </button>`;
       domString += `<div class="d-flex flex-wrap justify-content-around pinContainer" id="${boardId}">`;
       pins.forEach((pin) => {
         domString += pCard.printPinCards(pin);
