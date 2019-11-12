@@ -7,7 +7,7 @@ const makeABoard = (uid) => {
   b.getBoards(uid)
     .then((boards) => {
       let domString = '<h2 class="text-center header">BOARDS</H2>';
-      domString += '<div class="d-flex flex-wrap">';
+      domString += `<div class="d-flex flex-wrap boardContainer" id="${boards.id}">`;
       boards.forEach((board) => {
         domString += card.boardCard(board);
       });

@@ -1,5 +1,6 @@
 /* eslint-disable no-shadow */
 /* eslint-disable no-use-before-define */
+import $ from 'jquery';
 import pinsData from '../../helpers/data/pinsData';
 import pCard from '../pinCard/pinCard';
 import utilities from '../../helpers/utilities';
@@ -20,7 +21,8 @@ const printUserPins = (boardId) => new Promise((resolve, reject) => {
       });
       domString += '</div>';
       domString += '<button class="btn btn-danger" id="goBack">Go back to My Boards</button>';
-      utilities.printToDom('board', domString);
+      utilities.printToDom('pins', domString);
+      $('#board').addClass('hide');
     })
     .catch((error) => reject(error));
 });

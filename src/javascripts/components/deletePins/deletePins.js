@@ -1,11 +1,6 @@
 import $ from 'jquery';
-import printB from '../printBoards/printBoards';
 import pinsData from '../../helpers/data/pinsData';
 import pCard from '../printPins/printPins';
-
-const backToUsersBoards = () => {
-  printB.makeABoard();
-};
 
 const deletePinFromBoard = (event) => {
   event.preventDefault();
@@ -19,4 +14,4 @@ const deletePinFromBoard = (event) => {
     .catch((error) => console.error(error));
 };
 
-export default { backToUsersBoards, deletePinFromBoard };
+export default { deletePinFromBoard };

@@ -13,6 +13,8 @@ const boardCard = (boards) => {
   <img src=${boards.imageUrl} class="card-img-top" alt="...">
   <p class="card-text text-center">${boards.description}</p>
   </div>
+  <button class="btn btn-primary print-pins-button" id="${boards.id}">Go to Board</button>
+  <button class="btn btn-danger delete-board-button" id="${boards.id}">Delete This Board</button>
   </div>`;
   } else {
     domString += `
