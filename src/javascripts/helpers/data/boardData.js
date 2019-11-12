@@ -19,4 +19,6 @@ const getBoards = () => new Promise((resolve, reject) => {
 
 const deleteBoardfromFirebase = (boardId) => axios.delete(`${baseUrl}/boards/${boardId}.json`);
 
-export default { getBoards, deleteBoardfromFirebase };
+const addNewBoard = (newBoard) => axios.post(`${baseUrl}/boards.json`, newBoard);
+
+export default { getBoards, deleteBoardfromFirebase, addNewBoard };
