@@ -27,6 +27,7 @@
 <div id="board">Board</div>
 <div id="pins"></div>
 
+<!-- Add Pin Modal-->
 <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
   <div class="modal-dialog" role="document">
     <div class="modal-content">
@@ -63,7 +64,7 @@
     </div>
   </div>
 </div>
-
+<!--Add Board Modal-->
 <div class="modal fade" id="addBoardModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
   <div class="modal-dialog" role="document">
     <div class="modal-content">
@@ -96,6 +97,61 @@
     </div>
   </div>
 </div>
+
+<!--Update Pin Modal-->
+
+<div class="modal fade" id="updatePinModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Update Pin</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <form>
+          <div class="form-group">
+            <label for="update-pin-name">Name</label>
+            <input type="text" class="form-control" id="update-pin-name" placeholder="Enter Pin Name">
+          </div>
+          <div class="form-group">
+            <label for="update-image-url">Image URL</label>
+            <input type="text" class="form-control" id="update-image-url" placeholder="Enter Image URL">
+          </div>
+          <div class="form-group">
+            <label for="update-site-link">Site Link</label>
+            <input type="text" class="form-control" id="update-site-link" placeholder="Enter website URL">
+          </div>
+          <div class="form-group">
+            <label for="update-pin-description">Description</label>
+            <input type="text" class="form-control" id="update-pin-description" placeholder="Enter description">
+          </div>
+          <div class="form-group">
+            <label for="update-pin-board">Which Board?</label>
+            <div class="custom-control custom-radio">
+              <input type="radio" id="updateSmoke" name="customRadio" class="custom-control-input">
+              <label class="custom-control-label" for="updateSmoke">Smoking Recipes</label>
+            </div>
+            <div class="custom-control custom-radio">
+              <input type="radio" id="updateVacation" name="customRadio" class="custom-control-input">
+              <label class="custom-control-label" for="updateVacation">Vacation Spots</label>
+            </div>
+            <div class="custom-control custom-radio">
+              <input type="radio" id="updateWeb" name="customRadio" class="custom-control-input">
+              <label class="custom-control-label" for="updateWeb">Web Development</label>
+            </div>
+          </div>
+        </form>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-primary">Update Pin</button>
+      </div>
+    </div>
+  </div>
+</div>
+
 
 </body>
 </html>
