@@ -45,8 +45,8 @@ const preFillTheUpdate = (event) => {
 const moveThePinToNewBoard = (event) => {
   event.stopImmediatePropagation();
   const { uid } = firebase.auth().currentUser;
-  const boardId = $('#board').find('.singleBoard').attr('id');
-  console.log(boardId);
+  const boardId = $('.addPinOnBoard').attr('id');
+  console.log('weird one', boardId);
   const pinId = event.target.id;
   console.log('pinIdButton', pinId);
   // const boardId = event.target.id;
