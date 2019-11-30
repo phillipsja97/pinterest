@@ -7,6 +7,7 @@ import pinData from '../../helpers/data/pinsData';
 const addNewPinToBoard = (e) => {
   e.stopImmediatePropagation();
   const { uid } = firebase.auth().currentUser;
+  $('.addPinOnBoard').find('id');
   const boardId = $('#board').find('.singleBoard').attr('id');
   const newPin = {
     name: $('#pin-name').val(),
@@ -26,7 +27,7 @@ const addNewPinToBoard = (e) => {
 
 const preFillTheUpdate = (event) => {
   const pinId = event.target.id.split('update-')[1];
-  console.log('pinId');
+  console.log('pinId', pinId);
   pinData.getPinByPinId(pinId)
     .then((response) => {
       console.log(response);
@@ -36,10 +37,34 @@ const preFillTheUpdate = (event) => {
       $('#update-image-url').val(pin.imageUrl);
       $('#update-site-link').val(pin.siteUrl);
       $('#update-pin-description').val(pin.description);
-      // $('.update-souvenir-button').attr('id', boardId);
+      $('.updatePinLocation').attr('id', pinId);
+    })
+    .catch((error) => console.error(error));
+};
+
+const moveThePinToNewBoard = (event) => {
+  event.stopImmediatePropagation();
+  const { uid } = firebase.auth().currentUser;
+  const boardId = $('#board').find('.singleBoard').attr('id');
+  console.log(boardId);
+  const pinId = event.target.id;
+  console.log('pinIdButton', pinId);
+  // const boardId = event.target.id;
+  const updatedPin = {
+    name: $('#update-pin-name').val(),
+    imageUrl: $('#update-image-url').val(),
+    siteUrl: $('#update-site-link').val(),
+    description: $('#update-pin-description').val(),
+    uid,
+    boardId,
+  };
+  pinData.updatePin(pinId, updatedPin)
+    .then(() => {
+      $('#updatePinModal').modal('hide');
+      printP.printUserPins(boardId);
     })
     .catch((error) => console.error(error));
 };
 
 
-export default { addNewPinToBoard, preFillTheUpdate };
+export default { addNewPinToBoard, preFillTheUpdate, moveThePinToNewBoard };
