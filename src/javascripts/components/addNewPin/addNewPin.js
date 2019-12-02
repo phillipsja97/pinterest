@@ -3,6 +3,8 @@ import firebase from 'firebase/app';
 import 'firebase/auth';
 import printP from '../printPins/printPins';
 import pinData from '../../helpers/data/pinsData';
+import boardsData from '../../helpers/data/boardData';
+import utilities from '../../helpers/utilities';
 
 const addNewPinToBoard = (e) => {
   e.stopImmediatePropagation();
@@ -25,46 +27,69 @@ const addNewPinToBoard = (e) => {
     .catch((error) => console.error(error));
 };
 
-const preFillTheUpdate = (event) => {
-  const pinId = event.target.id.split('update-')[1];
-  console.log('pinId', pinId);
-  pinData.getPinByPinId(pinId)
-    .then((response) => {
-      console.log(response);
-      $('#updatePinModal').modal('show');
-      const pin = response.data;
-      $('#update-pin-name').val(pin.name);
-      $('#update-image-url').val(pin.imageUrl);
-      $('#update-site-link').val(pin.siteUrl);
-      $('#update-pin-description').val(pin.description);
-      $('.updatePinLocation').attr('id', pinId);
+// const preFillTheUpdate = (event) => {
+//   const boardId = $('.addPinOnBoard').attr('id');
+//   const pinId = event.target.id.split('update-')[1];
+//   console.log('pinId', pinId);
+//   pinData.getPinByPinId(pinId)
+//     .then((response) => {
+//       console.log(response);
+//       $('#updatePinModal').modal('show');
+//       const pin = response.data;
+//       $('#update-pin-name').val(pin.name);
+//       $('#update-image-url').val(pin.imageUrl);
+//       $('#update-site-link').val(pin.siteUrl);
+//       $('#update-pin-description').val(pin.description);
+//       $('.updatePinLocation').attr('id', pinId);
+//       $('.custom-control custom-radio').attr('id', boardId);
+//     })
+//     .catch((error) => console.error(error));
+// };
+
+const updatePinOnBoard = () => {
+  boardsData.getBoards()
+    .then((boards) => {
+      console.log('boards', boards);
+      let domString = '';
+      domString += `
+              <form>
+                <div class="form-group">
+                <label for="exampleFormControlSelect1">Move To New Board</label>
+                <select class="form-control" id="exampleFormControlSelect1">`;
+      boards.forEach((board) => {
+        domString += `<option value="${board.id}">${board.name}</option>`;
+      });
+      domString += `
+            </select>
+            </div>
+            </form>
+                  `;
+      utilities.printToDom('switch-board-div', domString);
     })
     .catch((error) => console.error(error));
 };
 
 const moveThePinToNewBoard = (event) => {
   event.stopImmediatePropagation();
-  const { uid } = firebase.auth().currentUser;
-  const boardId = $('.addPinOnBoard').attr('id');
-  console.log('weird one', boardId);
-  const pinId = event.target.id;
-  console.log('pinIdButton', pinId);
-  // const boardId = event.target.id;
-  const updatedPin = {
-    name: $('#update-pin-name').val(),
-    imageUrl: $('#update-image-url').val(),
-    siteUrl: $('#update-site-link').val(),
-    description: $('#update-pin-description').val(),
-    uid,
-    boardId,
-  };
-  pinData.updatePin(pinId, updatedPin)
-    .then(() => {
-      $('#updatePinModal').modal('hide');
-      printP.printUserPins(boardId);
+  const pinId = $('#pins').find('.single-pin').attr('id');
+  console.log('pinId', pinId);
+  const myInput = $('#exampleFormControlSelect1').val();
+  console.log('myInput', myInput);
+  pinData.getPins()
+    .then((response) => {
+      const pin = response.data;
+      console.log('pins', pin);
+      pin.boardId = myInput;
+      const pinCopy = { ...pin };
+      console.log('pincopy', pinCopy);
+      pinData.updatePin(pinId, pinCopy)
+        .then(() => {
+          $('#switchBoardModal').modal('hide');
+          // eslint-disable-next-line no-use-before-define
+          printP.printUserPins(myInput);
+        });
     })
-    .catch((error) => console.error(error));
+    .catch((error) => (error));
 };
 
-
-export default { addNewPinToBoard, preFillTheUpdate, moveThePinToNewBoard };
+export default { addNewPinToBoard, updatePinOnBoard, moveThePinToNewBoard };
