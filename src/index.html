@@ -27,6 +27,7 @@
 <div id="board">Board</div>
 <div id="pins"></div>
 
+<!-- Add Pin Modal-->
 <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
   <div class="modal-dialog" role="document">
     <div class="modal-content">
@@ -63,7 +64,7 @@
     </div>
   </div>
 </div>
-
+<!--Add Board Modal-->
 <div class="modal fade" id="addBoardModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
   <div class="modal-dialog" role="document">
     <div class="modal-content">
@@ -96,6 +97,45 @@
     </div>
   </div>
 </div>
+
+<!--Update Pin Modal-->
+
+<div class="modal fade" id="switchBoardModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Switch Board</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <div id="switch-board-div"></div>
+        <div class="form-group">
+          <label for="edit-pin-name">Name</label>
+          <input type="text" class="form-control" id="edit-pin-name" placeholder="Enter ">
+        </div>
+        <div class="form-group">
+          <label for="edit-pin-description">Description</label>
+          <input type="text" class="form-control" id="edit-pin-description" placeholder="Enter Description ">
+        </div>
+        <div class="form-group">
+          <label for="edit-pin-image">Image URL</label>
+          <input type="text" class="form-control" id="edit-pin-image" placeholder="Enter Image URL">
+        </div>
+        <div class="form-group">
+          <label for="edit-pin-site">SiteUrl</label>
+          <input type="text" class="form-control" id="edit-pin-site" placeholder="Enter Site URL">
+        </div>
+      </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-dark" data-dismiss="modal">Close</button>
+          <button type="button" class="btn btn-secondary switch-new-board">Switch Board</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
 
 </body>
 </html>

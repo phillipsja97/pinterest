@@ -13,6 +13,9 @@ const listeners = () => {
   $('body').on('click', '.delete-board-button', deleteB.deleteBoardByBoardId);
   $('#add-new-pin').click(addP.addNewPinToBoard);
   $('#add-new-board').click(addB.addNewBoardByUser);
+  // $('.updatePinAndBoard').click(addP.preFillTheUpdate);
+  $('body').on('click', '.updatePinAndBoard', addP.updatePinOnBoard);
+  $('body').on('click', '.switch-new-board', addP.moveThePinToNewBoard);
 };
 
 export default { listeners };
