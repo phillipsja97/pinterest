@@ -46,7 +46,7 @@ const addNewPinToBoard = (e) => {
 //     .catch((error) => console.error(error));
 // };
 
-const updatePinOnBoard = () => {
+const updatePinOnBoard = (event) => {
   boardsData.getBoards()
     .then((boards) => {
       console.log('boards', boards);
@@ -64,6 +64,16 @@ const updatePinOnBoard = () => {
             </div>
             </form>
                   `;
+      const pinId = event.target.id.split('update-')[1];
+      pinData.getPinByPinId(pinId)
+        .then((response) => {
+          const pin = response.data;
+          console.log(pin);
+          $('#edit-pin-name').val(pin.name);
+          $('#edit-pin-description').val(pin.description);
+          $('#edit-pin-image').val(pin.imageUrl);
+          $('#edit-pin-site').val(pin.siteUrl);
+        });
       utilities.printToDom('switch-board-div', domString);
     })
     .catch((error) => console.error(error));
@@ -71,25 +81,28 @@ const updatePinOnBoard = () => {
 
 const moveThePinToNewBoard = (event) => {
   event.stopImmediatePropagation();
+  const { uid } = firebase.auth().currentUser;
   const pinId = $('#pins').find('.single-pin').attr('id');
-  console.log('pinId', pinId);
-  const myInput = $('#exampleFormControlSelect1').val();
-  console.log('myInput', myInput);
-  pinData.getPins()
-    .then((response) => {
-      const pin = response.data;
-      console.log('pins', pin);
-      pin.boardId = myInput;
-      const pinCopy = { ...pin };
-      console.log('pincopy', pinCopy);
-      pinData.updatePin(pinId, pinCopy)
-        .then(() => {
-          $('#switchBoardModal').modal('hide');
-          // eslint-disable-next-line no-use-before-define
-          printP.printUserPins(myInput);
-        });
-    })
-    .catch((error) => (error));
+  const boardId = $('#exampleFormControlSelect1').val();
+  // pinData.getPins()
+  //   .then((response) => {
+  //     const pin = response.data;
+  const pinCopy = {
+    name: $('#edit-pin-name').val(),
+    imageUrl: $('#edit-pin-image').val(),
+    siteUrl: $('#edit-pin-site').val(),
+    description: $('#edit-pin-description').val(),
+    boardId,
+    uid,
+  };
+  // console.log('pins', pin);
+  pinData.updatePin(pinId, pinCopy)
+    .then(() => {
+      $('#switchBoardModal').modal('hide');
+      // eslint-disable-next-line no-use-before-define
+      printP.printUserPins(boardId)
+        .catch((error) => (error));
+    });
 };
 
 export default { addNewPinToBoard, updatePinOnBoard, moveThePinToNewBoard };
